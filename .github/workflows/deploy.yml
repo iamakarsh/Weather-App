@@ -1,12 +1,3 @@
-name: Deploy
-on: [push]
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: echo "API_KEY=${{ secrets.OPENWEATHER_API_KEY }}" > .env
-      - uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+- name: Replace API key
+  run: |
+    sed -i "s/YOUR_API_KEY_HERE/${{ secrets.OPENWEATHER_API_KEY }}/g" script.js
